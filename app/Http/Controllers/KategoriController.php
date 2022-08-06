@@ -19,7 +19,7 @@ class KategoriController extends Controller
             ];
             return view('tampil_data_oleh_admin.tampil_data_kategori_oleh_admin',$data);
         }else{
-            return view('login.login_admin');
+            return view( 'login.login_admin');
         }
     }
 

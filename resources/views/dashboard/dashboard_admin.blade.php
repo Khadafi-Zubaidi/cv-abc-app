@@ -22,7 +22,7 @@
                             <img src="{{asset('foto_admin')}}/foto_admin.png" class="img-circle elevation-2" alt="Foto Admin">
                         </div>
                         <div class="info">
-                            <a href="#" class="d-block">{{$LoggedUserInfo->nama_admin}}</a>
+                            <a href="#" class="d-block">{{$NamanyaAdmin->nama_admin}}</a>
                         </div>
                     </div>
                     <nav class="mt-2">
@@ -56,6 +56,14 @@
                                         <a href="{{route('tampil_data_produk_oleh_admin')}}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Produk</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{route('tampil_data_produk_versi_2_oleh_admin')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Produk Versi 2</p>
                                         </a>
                                     </li>
                                 </ul>

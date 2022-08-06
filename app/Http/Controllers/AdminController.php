@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
-use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
 class AdminController extends Controller
 {
+    
     public function register_admin(){
-        return view('register.register_admin');
+        return view('register.register_admin');//fungsinya adalah membuka file view register_admin yang ada di dalam folder register
+        //fungsi return view adalah untuk membuka file view
     }
 
     public function simpan_data_admin_baru(Request $request){
@@ -28,7 +29,7 @@ class AdminController extends Controller
         $data_baru = new Admin();
         $data_baru->email_admin = $request->email_admin;
         $data_baru->nama_admin = $request->nama_admin;
-        $data_baru->password = Hash::make($request->password);
+        $data_baru->password = Hash::make($request->password);//$2y$10$x1vbIqOFyC4Cn7n8fYDPN.DuH2rLhpIYT4zaFiKMa8e9vVyIlVhbK
         $data_baru->save();
         $notification = array(
             'success' => 'Data Admin '.$request->nama_admin.' telah disimpan!',
@@ -71,7 +72,7 @@ class AdminController extends Controller
         if (session()->has('LoggedAdmin')){
             $data_admin_untuk_dashboard = Admin::where('id','=',session('LoggedAdmin'))->first();
             $data = [
-                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+                'NamanyaAdmin'=>$data_admin_untuk_dashboard,
             ];
             return view('dashboard.dashboard_admin',$data);
         }else{

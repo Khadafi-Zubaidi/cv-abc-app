@@ -125,4 +125,42 @@ class ProdukController extends Controller
             return response()->json('Foto Telah Disimpan'); 
         }
     }
+
+    public function tampil_data_produk_versi_2_oleh_admin(){
+        if (session()->has('LoggedAdmin')){
+            $data_admin_untuk_dashboard = Admin::where('id','=',session('LoggedAdmin'))->first();
+            $data_tabel = DB::table('produks')
+                            ->join('kategoris', 'produks.id_kategori', '=', 'kategoris.id')
+                            ->join('satuans', 'produks.id_satuan', '=', 'satuans.id')
+                            ->select('produks.id',
+                                     'produks.nama_produk',
+                                     'kategoris.nama_kategori',
+                                     'satuans.nama_satuan',
+                                     'produks.jumlah_stok',
+                                     'produks.harga_satuan',
+                                     'produks.foto_produk',)
+                            ->orderBy('produks.id', 'asc')
+                            ->get();
+            $data = [
+                'DataTabel'=>$data_tabel,
+                'LoggedUserInfo'=>$data_admin_untuk_dashboard,
+            ];
+            return view('tampil_data_oleh_admin.tampil_data_produk_versi_2_oleh_admin',$data);
+        }else{
+            return view('login.login_admin');
+        }
+    }
+
+    public function tampil_data_kategori(){
+        $data_kategori = DB::table('kategoris')
+                            ->pluck('id','nama_kategori');
+        return response()->json($data_kategori);
+    }
+
+    public function simpan_perubahan_data_kategori_pada_data_produk_oleh_admin_data(Request $request){
+        $data_perubahan = Produk::find($request->id);
+        $data_perubahan->id_kategori = $request->id_kategori;
+        $data_perubahan->save();
+        return response()->json($data_perubahan);
+    }
 }

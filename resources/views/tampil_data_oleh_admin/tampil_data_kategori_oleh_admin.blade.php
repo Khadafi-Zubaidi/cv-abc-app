@@ -83,8 +83,8 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @php $no = 1; @endphp
-                                                        @foreach($DataTabel as $dt)
+                                                        @php $no = 1; @endphp<!-- definisi variabel no-->
+                                                        @foreach($DataTabel as $dt) <!-- perulangan untuk menampilkan data-->
                                                             <tr>
                                                                 <td>{{$no++}}</td>
                                                                 <td>{{$dt->nama_kategori}}</td>

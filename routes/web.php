@@ -18,10 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+Route::get('/',[BerandaController::class,'tampil_data_produk_di_beranda'])->name('beranda');
 //Beranda
 Route::get('beranda',[BerandaController::class,'tampil_data_produk_di_beranda'])->name('beranda');
 
@@ -58,3 +58,8 @@ Route::post('/simpan_perubahan_data_foto_produk_oleh_admin',[ProdukController::c
 
 Route::get('tambah_data_produk_oleh_admin',[ProdukController::class,'tambah_data_produk_oleh_admin'])->name('tambah_data_produk_oleh_admin');
 Route::post('simpan_data_produk_baru_oleh_admin',[ProdukController::class,'simpan_data_produk_baru_oleh_admin'])->name('simpan_data_produk_baru_oleh_admin');
+
+//tambahan untuk data produk
+Route::get('tampil_data_produk_versi_2_oleh_admin',[ProdukController::class,'tampil_data_produk_versi_2_oleh_admin'])->name('tampil_data_produk_versi_2_oleh_admin');
+Route::get('/tampil_data_kategori',[ProdukController::class,'tampil_data_kategori'])->name('tampil_data_kategori');
+Route::put('/simpan_perubahan_data_kategori_pada_data_produk_oleh_admin_data',[ProdukController::class,'simpan_perubahan_data_kategori_pada_data_produk_oleh_admin_data'])->name('produk.simpan_perubahan_data_kategori');
